@@ -16,6 +16,11 @@ var helpers = require('./lib/helpers');
 const PORT = process.env.PORT || 8080;
 // Instantiate the HTTP server
 var httpServer = http.createServer(function(req,res){
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Request-Method', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   unifiedServer(req,res);
 });
 
@@ -32,6 +37,11 @@ var httpsServerOptions = {
   'cert': fs.readFileSync('./https/cert.pem')
 };
 var httpsServer = https.createServer(httpsServerOptions,function(req,res){
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Request-Method', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   unifiedServer(req,res);
 });
 // Start the HTTPS server
